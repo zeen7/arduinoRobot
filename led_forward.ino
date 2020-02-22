@@ -1,10 +1,5 @@
-/*
- * Zeen Wang
- * Mail delivering robot
- * CPT
- */
 int button =8;   //button pin
-int userPress=0; //is button on or off?
+int userPress=0; //is button on or off
 int leftMotorForward=11; //left wheel moves forwards
 int leftMotorBackward=10; //left wheel moves backwards
 int rightMotorForward=9;//right wheel moves forwards
@@ -17,6 +12,7 @@ int copy; //copies blackCounter for return
 int counter3=2; //counter for destination 3
 int copy3=2; //copy for destination 3
 int counter=0;
+
 void setup() {
   // put your setup code here, to run once:
 pinMode(button, INPUT);
