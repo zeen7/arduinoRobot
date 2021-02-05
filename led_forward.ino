@@ -15,62 +15,57 @@ int counter=0;
 
 void setup() {
   // put your setup code here, to run once:
-pinMode(button, INPUT);
-pinMode(leftSensor, INPUT);
-pinMode(rightSensor, INPUT);
-pinMode(leftMotorForward, OUTPUT);
-pinMode(leftMotorBackward, OUTPUT);
-pinMode(rightMotorForward, OUTPUT);
-pinMode(rightMotorBackward, OUTPUT);
+  pinMode(button, INPUT);
+  pinMode(leftSensor, INPUT);
+  pinMode(rightSensor, INPUT);
+  pinMode(leftMotorForward, OUTPUT);
+  pinMode(leftMotorBackward, OUTPUT);
+  pinMode(rightMotorForward, OUTPUT);
+  pinMode(rightMotorBackward, OUTPUT);
 
-Serial.begin(9600);
+  Serial.begin(9600);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
   for(int i=0; i<=2; i++)
   {
-  userPress= digitalRead(button); //counts the number of times the user pushes button
+    userPress= digitalRead(button); //counts the number of times the user pushes button
   if(userPress==LOW)
   {
     blackCounter=blackCounter*2; //increases blackCounter based on user input
     copy=blackCounter; //copies blackCounter
   }
   }
-if(userPress==LOW)    //starts after user presses button
-{
-  while(userPress==LOW)
+  if(userPress==LOW)    //starts after user presses button
   {
-     int a = analogRead(rightSensor);
-  int b = analogRead(leftSensor);
-Serial.println(a);
-delay(1);
-Serial.println(b);
-delay(1);
+    while(userPress==LOW)
+    {
+      int a = analogRead(rightSensor);
+      int b = analogRead(leftSensor);
+      Serial.println(a);
+      delay(1);
+      Serial.println(b);
+      delay(1);
 
-if(a<=900 && b>1000)
-{
-digitalWrite(leftMotorForward, HIGH);
-digitalWrite(rightMotorForward, LOW);
+      if(a<=900 && b>1000)
+      {
+        digitalWrite(leftMotorForward, HIGH);
+        digitalWrite(rightMotorForward, LOW);
+      }
 
+      else if(a>900 && b<=1000 )
+      {
+        digitalWrite(rightMotorForward, HIGH);
+        digitalWrite(leftMotorForward, LOW);
+      }
+      else if(b>1000 && a>900)
+      {
+        digitalWrite(leftMotorForward, HIGH);
+        digitalWrite(rightMotorForward, HIGH);
+      }
+    }
 
-}
-
-else if(a>900 && b<=1000 )
-{
-digitalWrite(rightMotorForward, HIGH);
-digitalWrite(leftMotorForward, LOW);
-
-
-}
-else if(b>1000 && a>900)
-{
-
-digitalWrite(leftMotorForward, HIGH);
-digitalWrite(rightMotorForward, HIGH);
-}
-}
-
-  }
+   }
 }
 
